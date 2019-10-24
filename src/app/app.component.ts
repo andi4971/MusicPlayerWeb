@@ -1,4 +1,9 @@
-import { Component } from '@angular/core';
+import {
+  Component
+} from '@angular/core';
+import {
+  BackendService
+} from './services/backend.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +12,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'musicPlayerWeb';
+
+  constructor(private backendService: BackendService) {}
+  refreshDbClicked(): void {
+    this.backendService.RefreshDatabase();
+    }
 }
