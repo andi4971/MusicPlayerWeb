@@ -8,6 +8,7 @@ import {
 import {
   BackendService
 } from 'src/app/services/backend.service';
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-artists',
@@ -16,14 +17,18 @@ import {
 })
 export class ArtistsComponent implements OnInit {
 
-  artists = new Array < Artist > ();
-  constructor(private backendService: BackendService) {}
+  artists = new Array<Artist>();
+  searchValue = '';
+  constructor(private backendService: BackendService) { }
 
   ngOnInit() {
     this.ReloadArtists();
     this.backendService.GetRefreshObservable().subscribe(x => this.ReloadArtists());
   }
   private ReloadArtists(): void {
-    this.backendService.GetArtists().subscribe(x => this.artists = x);
+    this.backendService.GetArtists().subscribe(x => {
+      this.artists = x.sort((a, b) => a < b ? -1 : a > b ? 1 : 0);
+    });
   }
+
 }

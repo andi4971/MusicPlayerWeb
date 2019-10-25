@@ -1,2 +1,12 @@
-<input type="button" (click)="refreshDbClicked()" value="Refresh Db"/>
-<router-outlet></router-outlet>
+<mat-grid-list cols="6" rowHeight="fit">
+  <mat-grid-tile rowspan="3" id="sidebar">
+    <button (click)="refreshDbClicked()" value="Refresh Db" mat-button>
+        <mat-icon>refresh</mat-icon>
+        Refresh Db
+    </button>
+  </mat-grid-tile>
+  <mat-grid-tile id="routerContent" rowspan="3" colspan="5">
+    <router-outlet></router-outlet>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="6">player</mat-grid-tile>
+</mat-grid-list>

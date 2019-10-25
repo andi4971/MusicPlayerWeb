@@ -13,8 +13,8 @@ import {
 export class AppComponent {
   title = 'musicPlayerWeb';
 
-  constructor(private backendService: BackendService) {}
+  constructor(private backendService: BackendService) { }
   refreshDbClicked(): void {
     this.backendService.RefreshDatabase();
-    }
+  }
 }
