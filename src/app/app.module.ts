@@ -14,12 +14,16 @@ import {MatInputModule} from '@angular/material/input';
 import { AppComponent } from './app.component';
 import { ArtistsComponent } from './components/artists/artists.component';
 import { ArtistDetailComponent } from './components/artist-detail/artist-detail.component';
+import { AlbumsComponent } from './components/albums/albums.component';
+import { AlbumDetailComponent } from './components/album-detail/album-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ArtistsComponent,
-    ArtistDetailComponent
+    ArtistDetailComponent,
+    AlbumsComponent,
+    AlbumDetailComponent
   ],
   imports: [
     BrowserModule,

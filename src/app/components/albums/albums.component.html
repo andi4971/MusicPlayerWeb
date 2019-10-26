@@ -1,0 +1,19 @@
+<button mat-button [routerLink]="[ '/Artists' ]">
+  <mat-icon>arrow_back</mat-icon>
+  Back to Artists
+</button>
+<h3></h3>
+<mat-form-field>
+  <input matInput type="text" placeholder="Search Album" [(ngModel)]="searchValue">
+  <button mat-button *ngIf="searchValue" matSuffix mat-icon-button aria-label="Clear" (click)="searchValue=''">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+<mat-list>
+  <div *ngFor="let album of albums">
+    <mat-list-item *ngIf="album.name.includes(searchValue)">
+      <album-detail [album]=album></album-detail>
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </div>
+</mat-list>
