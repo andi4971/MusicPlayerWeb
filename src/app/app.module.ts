@@ -1,14 +1,38 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import {MatListModule} from '@angular/material/list';
+import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {HttpClientModule} from '@angular/common/http';
+import {MatIconModule} from '@angular/material/icon';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input'; 
 
 import { AppComponent } from './app.component';
+import { ArtistsComponent } from './components/artists/artists.component';
+import { ArtistDetailComponent } from './components/artist-detail/artist-detail.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ArtistsComponent,
+    ArtistDetailComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    MatListModule,
+    MatIconModule,
+    MatGridListModule,
+    MatDividerModule,
+    MatButtonModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

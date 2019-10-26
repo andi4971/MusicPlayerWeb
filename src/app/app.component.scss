@@ -1,0 +1,14 @@
+mat-grid-tile {
+    background: lightgray;
+}
+mat-grid-list {
+    height: 100%;
+    width: 100%;
+    background: black;
+    
+}
+
+#routerContent ::ng-deep figure {
+    justify-content: flex-start;
+    align-items: flex-start;
+ }

@@ -1,0 +1,14 @@
+<mat-form-field>
+  <input matInput type="text" placeholder="Search Artist" [(ngModel)]="searchValue" (onformchange)="filterArtists()">
+  <button mat-button *ngIf="searchValue" matSuffix mat-icon-button aria-label="Clear" (click)="searchValue=''">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+<mat-list>
+  <div *ngFor="let artist of artists">
+    <mat-list-item  *ngIf="artist.name.includes(searchValue)">
+      <artist-detail [artist]=artist></artist-detail>
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </div>
+</mat-list>
