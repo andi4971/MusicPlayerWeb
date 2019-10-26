@@ -6,7 +6,7 @@
 </mat-form-field>
 <mat-list>
   <div *ngFor="let artist of artists">
-    <mat-list-item  *ngIf="artist.name.includes(searchValue)">
+    <mat-list-item  *ngIf="artist.name.includes(searchValue)" [routerLink]="[ '/Albums', artist.artistId ]">
       <artist-detail [artist]=artist></artist-detail>
       <mat-divider></mat-divider>
     </mat-list-item>
