@@ -9,13 +9,17 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input'; 
+import {MatInputModule} from '@angular/material/input';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 import { AppComponent } from './app.component';
 import { ArtistsComponent } from './components/artists/artists.component';
 import { ArtistDetailComponent } from './components/artist-detail/artist-detail.component';
 import { AlbumsComponent } from './components/albums/albums.component';
 import { AlbumDetailComponent } from './components/album-detail/album-detail.component';
+import { SongsComponent } from './components/songs/songs.component';
+import { SongDetailComponent } from './components/song-detail/song-detail.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,9 @@ import { AlbumDetailComponent } from './components/album-detail/album-detail.com
     ArtistsComponent,
     ArtistDetailComponent,
     AlbumsComponent,
-    AlbumDetailComponent
+    AlbumDetailComponent,
+    SongsComponent,
+    SongDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +43,8 @@ import { AlbumDetailComponent } from './components/album-detail/album-detail.com
     MatDividerModule,
     MatButtonModule,
     MatInputModule,
+    ScrollingModule,
+    NgScrollbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

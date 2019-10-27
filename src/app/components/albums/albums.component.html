@@ -11,7 +11,7 @@
 </mat-form-field>
 <mat-list>
   <div *ngFor="let album of albums">
-    <mat-list-item *ngIf="album.name.includes(searchValue)">
+    <mat-list-item *ngIf="album.name.includes(searchValue)" [routerLink]="[ '/Songs', artistId, album.albumId ]">
       <album-detail [album]=album></album-detail>
       <mat-divider></mat-divider>
     </mat-list-item>
