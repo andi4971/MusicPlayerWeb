@@ -1,6 +1,14 @@
-<button mat-button color="primary">
+<div id="wrapper" (mouseenter)="buttonsHidden=false" (mouseleave)="buttonsHidden=true">
   <mat-icon color="accent">
-    queue_music
+    music_video
   </mat-icon>
+  <span *ngIf="!buttonsHidden">
+    <button mat-icon-button (click)="playSong()">
+      <mat-icon>play_arrow</mat-icon>
+    </button>
+    <button mat-icon-button (click)="addSongToQueue()">
+      <mat-icon>queue</mat-icon>
+    </button>
+  </span>
   {{song.name}} {{song.songId}}
-</button>
+</div>

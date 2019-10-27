@@ -23,7 +23,7 @@ export class ArtistsComponent implements OnInit {
 
   ngOnInit() {
     this.ReloadArtists();
-    this.backendService.GetRefreshObservable().subscribe(x => this.ReloadArtists());
+    this.backendService.GetRefreshDbObservable().subscribe(x => this.ReloadArtists());
   }
   private ReloadArtists(): void {
     this.backendService.GetArtists().subscribe(x => {

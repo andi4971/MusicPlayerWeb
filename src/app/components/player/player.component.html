@@ -1,0 +1,5 @@
+<div id="info">
+  <p class="text" id="currSong">{{currentSong.name}}</p>
+  <p class="text" id="nextSong" *ngIf="CheckForNextSong()">Next Song: {{nextSong.name}}</p>
+</div>
+<audio id="audioPlayer" controls (ended)="OnSongEnded()"></audio>
