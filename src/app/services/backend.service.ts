@@ -10,7 +10,8 @@ import { Song } from '../DTOs/Song';
 })
 export class BackendService {
 
-  private refreshSubject = new Subject<boolean>();
+  private refreshDbSubject = new Subject<boolean>();
+  private playSongSubject = new Subject<Song>();
   private backendUrl = 'http://localhost:5000/api/Music/';
   constructor(private http: HttpClient) { }
 
@@ -20,11 +21,18 @@ export class BackendService {
   }
 
   public RefreshDatabase(): void {
-    this.http.get<boolean>(this.backendUrl + 'RefreshDatabase').subscribe(x => this.refreshSubject.next(x));
+    this.http.get<boolean>(this.backendUrl + 'RefreshDatabase').subscribe(x => this.refreshDbSubject.next(x));
   }
 
-  public GetRefreshObservable(): Observable<boolean> {
-    return this.refreshSubject.asObservable();
+  public GetRefreshDbObservable(): Observable<boolean> {
+    return this.refreshDbSubject.asObservable();
+  }
+
+  public GetPlaySongObservable(): Observable<Song> {
+    return this.playSongSubject.asObservable();
+  }
+  public PlaySong(song: Song) {
+    this.playSongSubject.next(song);
   }
 
   public GetAlbumsOfArtist(artistId: number): Observable<Album[]> {
@@ -33,5 +41,8 @@ export class BackendService {
 
   public GetSongsOfAlbum(albumId: number): Observable<Song[]> {
     return this.http.get<Song[]>(this.backendUrl + 'GetSongsOfAlbum?albumId=' + albumId);
+  }
+  public GetAudioStreamURL(songId: number): string {
+    return this.backendUrl + 'GetAudioStream?songId=' + songId;
   }
 }
