@@ -1,7 +1,16 @@
 .text {
     color: whitesmoke;
 }
-
+#info {
+    overflow: hidden;
+}
 audio {
     width: 1300px;
+}
+
+#currSong {
+    float: left;
+}
+#nextSong {
+    float: right;
 }

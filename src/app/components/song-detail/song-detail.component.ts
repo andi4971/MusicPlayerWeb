@@ -10,6 +10,7 @@ import { CommunicationService } from 'src/app/services/communication.service';
 })
 export class SongDetailComponent implements OnInit {
 
+  buttonsHidden = true;
   @Input() song: Song;
   constructor(private communicationService: CommunicationService) { }
 
@@ -17,5 +18,8 @@ export class SongDetailComponent implements OnInit {
   }
   public playSong(): void {
     this.communicationService.PlaySong(this.song);
+  }
+  public addSongToQueue(): void {
+    this.communicationService.AddSongToQueue(this.song);
   }
 }
