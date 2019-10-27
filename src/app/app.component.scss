@@ -1,14 +1,29 @@
 mat-grid-tile {
-    background: #212121;
+  background: #212121;
 }
+
 mat-grid-list {
-    height: 100%;
-    width: 100%;
-    background: black;
-    
+  height: 100%;
+  width: 100%;
+  background: black;
+
 }
 
 #routerContent ::ng-deep figure {
-    justify-content: flex-start;
-    align-items: flex-start;
- }
+  justify-content: flex-start;
+  align-items: flex-start;
+  max-height: 100%;
+  max-width: 100%;
+  width:100%;
+}
+
+::ng-deep mat-list  {
+  height: 500px;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+::ng-deep mat-form-field {
+  width: 100%;
+}
