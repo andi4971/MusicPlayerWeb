@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Artist } from '../DTOs/Artist';
 import { Observable, Subject } from 'rxjs';
 import { Album } from '../DTOs/Album';
+import { Song } from '../DTOs/Song';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +29,9 @@ export class BackendService {
 
   public GetAlbumsOfArtist(artistId: number): Observable<Album[]> {
     return this.http.get<Album[]>(this.backendUrl + 'GetAlbumsOfArtist?artistId=' + artistId);
+  }
+
+  public GetSongsOfAlbum(albumId: number): Observable<Song[]> {
+    return this.http.get<Song[]>(this.backendUrl + 'GetSongsOfAlbum?albumId=' + albumId);
   }
 }
