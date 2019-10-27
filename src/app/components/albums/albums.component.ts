@@ -11,12 +11,15 @@ export class AlbumsComponent implements OnInit {
 
   albums = new Array<Album>();
   searchValue = '';
+  artistId: number;
   constructor(private backendService: BackendService, private route: ActivatedRoute) { }
   ngOnInit() {
-    this.route.paramMap.subscribe(x =>
+    this.route.paramMap.subscribe(x => {
+      this.artistId = Number.parseInt(x.get('artistId'), 10);
       this.backendService.
-        GetAlbumsOfArtist(Number.parseInt(x.get('artistId'), 10))
-        .subscribe(y => this.albums = y)
+        GetAlbumsOfArtist(this.artistId)
+        .subscribe(y => this.albums = y);
+    }
     );
   }
 
