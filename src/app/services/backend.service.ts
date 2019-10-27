@@ -11,7 +11,6 @@ import { Song } from '../DTOs/Song';
 export class BackendService {
 
   private refreshDbSubject = new Subject<boolean>();
-  private playSongSubject = new Subject<Song>();
   private backendUrl = 'http://localhost:5000/api/Music/';
   constructor(private http: HttpClient) { }
 
@@ -26,13 +25,6 @@ export class BackendService {
 
   public GetRefreshDbObservable(): Observable<boolean> {
     return this.refreshDbSubject.asObservable();
-  }
-
-  public GetPlaySongObservable(): Observable<Song> {
-    return this.playSongSubject.asObservable();
-  }
-  public PlaySong(song: Song) {
-    this.playSongSubject.next(song);
   }
 
   public GetAlbumsOfArtist(artistId: number): Observable<Album[]> {

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Song } from 'src/app/DTOs/Song';
 import { BackendService } from 'src/app/services/backend.service';
+import { CommunicationService } from 'src/app/services/communication.service';
 
 @Component({
   selector: 'song-detail',
@@ -10,11 +11,11 @@ import { BackendService } from 'src/app/services/backend.service';
 export class SongDetailComponent implements OnInit {
 
   @Input() song: Song;
-  constructor(private backendService: BackendService) { }
+  constructor(private communicationService: CommunicationService) { }
 
   ngOnInit() {
   }
   public playSong(): void {
-    this.backendService.PlaySong(this.song);
+    this.communicationService.PlaySong(this.song);
   }
 }
