@@ -11,7 +11,7 @@ import { Song } from '../DTOs/Song';
 export class BackendService {
 
   private refreshDbSubject = new Subject<boolean>();
-  private backendUrl = 'http://localhost:5000/api/Music/';
+  private backendUrl = 'https://10.0.0.58:5000/api/Music/';
   constructor(private http: HttpClient) { }
 
 
