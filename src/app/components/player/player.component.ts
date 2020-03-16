@@ -15,6 +15,8 @@ export class PlayerComponent implements OnInit {
   currentSong = new Song();
   nextSong = null;
   queue = new Array<Song>();
+  loop = false;
+  random = false;
   ngOnInit() {
     this.audioPlayer = document.getElementById('audioPlayer') as HTMLAudioElement;
     this.audioPlayer.volume = 0.3;
@@ -27,11 +29,30 @@ export class PlayerComponent implements OnInit {
       this.queue.push(x);
       if (this.queue.length === 1) this.nextSong = x;
     });
+
+    this.communicationService.GetPlayListOfSongsObservable().subscribe(x => {
+      this.queue = x;
+      this.OnSongEnded();
+    });
   }
 
   public OnSongEnded(): void {
     if (this.queue.length === 0) return;
-    this.PlaySong(this.queue.shift());
+    if (this.loop) {
+      let nextSong;
+      if (this.random) {
+        nextSong = this.queue[Math.floor(Math.random() * (this.queue.length - 1))];
+      } else {
+        nextSong = this.queue.shift();
+      }
+      this.PlaySong(nextSong);
+      this.queue.push(nextSong);
+    } else
+      if (this.random) {
+        this.PlaySong(this.queue.splice(Math.floor(Math.random() * (this.queue.length - 1)), 1)[0])
+      } else {
+        this.PlaySong(this.queue.shift());
+      }
     if (this.queue.length === 0) {
       this.nextSong = null;
     } else {
@@ -42,6 +63,7 @@ export class PlayerComponent implements OnInit {
   private PlaySong(song: Song) {
     this.currentSong = song;
     this.audioPlayer.src = this.backendService.GetAudioStreamURL(song.songId);
+    this.audioPlayer.load();
     this.audioPlayer.play();
   }
 

@@ -11,7 +11,9 @@ import { Song } from '../DTOs/Song';
 export class BackendService {
 
   private refreshDbSubject = new Subject<boolean>();
+  //private backendUrl = 'https://localhost:5001/api/Music/';
   private backendUrl = 'https://10.0.0.58:5000/api/Music/';
+
   constructor(private http: HttpClient) { }
 
 
@@ -35,6 +37,6 @@ export class BackendService {
     return this.http.get<Song[]>(this.backendUrl + 'GetSongsOfAlbum?albumId=' + albumId);
   }
   public GetAudioStreamURL(songId: number): string {
-    return this.backendUrl + 'GetAudioStream?songId=' + songId;
+    return this.backendUrl + 'GetAudioDownload?songId=' + songId;
   }
 }

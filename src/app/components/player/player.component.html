@@ -1,5 +1,11 @@
 <div id="info">
   <p class="text" id="currSong">{{currentSong.name}}</p>
   <p class="text" id="nextSong" *ngIf="CheckForNextSong()">Next Song: {{nextSong.name}}</p>
+  <button mat-icon-button (click)="loop=!loop" [ngClass]="{'buttonActive': loop, 'buttonDisabled': !loop}">
+    <mat-icon >loop</mat-icon>
+  </button>
+  <button mat-icon-button (click)="random=!random" [ngClass]="{'buttonActive': random, 'buttonDisabled': !random}">
+    <mat-icon >shuffle</mat-icon>
+  </button>
 </div>
-<audio id="audioPlayer" controls (ended)="OnSongEnded()"></audio>
+<audio id="audioPlayer" preload="auto" controls (ended)="OnSongEnded()"></audio>

@@ -8,7 +8,10 @@
     <mat-icon>close</mat-icon>
   </button>
 </mat-form-field>
-
+<button mat-button color="primary" (click)="playAlbumClicked()">
+  <mat-icon color="accent">play_arrow</mat-icon>
+  Play Album
+ </button>
 <mat-list>
   <ng-scrollbar>
     <div *ngFor="let song of songs">

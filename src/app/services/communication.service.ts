@@ -7,9 +7,18 @@ import { Song } from '../DTOs/Song';
 })
 export class CommunicationService {
 
+  private playListOfSongsSubject = new Subject<Song[]>();
   private playSongSubject = new Subject<Song>();
   private addSongToQueueSubjcet = new Subject<Song>();
   constructor() { }
+
+  public PlayListOfSongs(songs: Song[]) {
+    this.playListOfSongsSubject.next(songs);
+  }
+
+  public GetPlayListOfSongsObservable(): Observable<Song[]> {
+    return this.playListOfSongsSubject.asObservable();
+  }
 
   public GetPlaySongObservable(): Observable<Song> {
     return this.playSongSubject.asObservable();

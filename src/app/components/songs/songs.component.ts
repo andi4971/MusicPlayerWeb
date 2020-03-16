@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BackendService } from 'src/app/services/backend.service';
 import { ActivatedRoute } from '@angular/router';
 import { Song } from 'src/app/DTOs/Song';
+import { CommunicationService } from 'src/app/services/communication.service';
 
 @Component({
   selector: 'app-songs',
@@ -13,7 +14,7 @@ export class SongsComponent implements OnInit {
   artistId: number;
   songs = new Array<Song>();
   searchValue = '';
-  constructor(private backendService: BackendService, private route: ActivatedRoute) { }
+  constructor(private backendService: BackendService, private route: ActivatedRoute, private communicationService: CommunicationService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(x => {
@@ -24,6 +25,9 @@ export class SongsComponent implements OnInit {
           Number.parseInt(x.get('albumId'), 10))
         .subscribe(y => this.songs = y);
     });
+  }
+  playAlbumClicked(): void {
+    this.communicationService.PlayListOfSongs(this.songs);
   }
 
 }
