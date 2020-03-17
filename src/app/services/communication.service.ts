@@ -13,7 +13,7 @@ export class CommunicationService {
   constructor() { }
 
   public PlayListOfSongs(songs: Song[]) {
-    this.playListOfSongsSubject.next(songs);
+    this.playListOfSongsSubject.next(songs.slice());
   }
 
   public GetPlayListOfSongsObservable(): Observable<Song[]> {
