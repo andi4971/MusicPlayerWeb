@@ -61,13 +61,31 @@ export class PlayerComponent implements OnInit {
   }
 
   private PlaySong(song: Song) {
-    this.currentSong = song;
-    this.audioPlayer.src = this.backendService.GetAudioStreamURL(song.songId);
-    this.audioPlayer.load();
-    this.audioPlayer.play();
+
+    this.backendService.GetBlobData(song.songId).subscribe(x => {
+      let binary = this.convertDataURIToBinary('data:audio/flac;base64,'+x);
+      let blob = new Blob([binary], { type: 'audio/flac' });
+      let blobUrl = URL.createObjectURL(blob);
+      this.audioPlayer.src = blobUrl;
+      this.currentSong = song;
+      this.audioPlayer.play();
+    });
   }
 
   public CheckForNextSong(): boolean {
     return this.nextSong != null;
+  }
+  private convertDataURIToBinary(dataURI): Uint8Array {
+    var BASE64_MARKER = ';base64,';
+    var base64Index = dataURI.indexOf(BASE64_MARKER) + BASE64_MARKER.length;
+    var base64 = dataURI.substring(base64Index);
+    var raw = window.atob(base64);
+    var rawLength = raw.length;
+    var array = new Uint8Array(new ArrayBuffer(rawLength));
+
+    for (let i = 0; i < rawLength; i++) {
+      array[i] = raw.charCodeAt(i);
+    }
+    return array;
   }
 }
