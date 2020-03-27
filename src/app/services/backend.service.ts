@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaderResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Artist } from '../DTOs/Artist';
 import { Observable, Subject } from 'rxjs';
 import { Album } from '../DTOs/Album';
 import { Song } from '../DTOs/Song';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +39,12 @@ export class BackendService {
   }
   public GetAudioStreamURL(songId: number): string {
     return this.backendUrl + 'GetAudioDownload?songId=' + songId;
+  }
+  public GetBlobData(songId: number): Observable<any> {
+    const requestOptions: Object = {
+      /* other options here */
+      responseType: 'text'
+    }
+    return this.http.get<any>(this.backendUrl + 'GetAudioStream?songId=' + songId, requestOptions);
   }
 }
