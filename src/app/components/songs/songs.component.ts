@@ -23,7 +23,17 @@ export class SongsComponent implements OnInit {
       this.backendService
         .GetSongsOfAlbum(
           Number.parseInt(x.get('albumId'), 10))
-        .subscribe(y => this.songs = y);
+        .subscribe(y => this.songs = y.sort((a, b) => {
+          let nameA = a.name.toUpperCase();
+          let nameB = b.name.toUpperCase();
+          if (nameA < nameB) {
+            return -1;
+          }
+          if (nameA > nameB) {
+            return 1;
+          }
+          return 0;
+        }));
     });
   }
   playAlbumClicked(): void {
