@@ -17,6 +17,7 @@ export class PlayerComponent implements OnInit {
   queue = new Array<Song>();
   loop = false;
   random = false;
+  playBase64 = false;
   ngOnInit() {
     this.audioPlayer = document.getElementById('audioPlayer') as HTMLAudioElement;
     this.audioPlayer.volume = 0.3;
@@ -61,15 +62,21 @@ export class PlayerComponent implements OnInit {
   }
 
   private PlaySong(song: Song) {
-
-    this.backendService.GetBlobData(song.songId).subscribe(x => {
-      let binary = this.convertDataURIToBinary('data:audio/flac;base64,'+x);
-      let blob = new Blob([binary], { type: 'audio/flac' });
-      let blobUrl = URL.createObjectURL(blob);
-      this.audioPlayer.src = blobUrl;
+    if (this.playBase64) {
+      this.backendService.GetBlobData(song.songId).subscribe(x => {
+        let binary = this.convertDataURIToBinary('data:audio/flac;base64,' + x);
+        let blob = new Blob([binary], { type: 'audio/flac' });
+        let blobUrl = URL.createObjectURL(blob);
+        this.audioPlayer.src = blobUrl;
+        this.currentSong = song;
+        this.audioPlayer.play();
+      });
+    } else {
       this.currentSong = song;
+      this.audioPlayer.src = this.backendService.GetAudioStreamURL(song.songId);
+      this.audioPlayer.load();
       this.audioPlayer.play();
-    });
+    }
   }
 
   public CheckForNextSong(): boolean {
